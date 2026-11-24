@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::title}, ~{::main})}">
+
+<head>
+    <title>Assistant IA</title>
+</head>
+
+<body>
+
+<main class="chat-page flex-grow-1 d-flex flex-column">
+
+    <!-- Zone des messages -->
+    <section class="flex-grow-1 overflow-auto p-4">
+
+        <!-- Aucune conversation sélectionnée -->
+        <div th:if="${conversation == null}"
+             class="text-center mt-5">
+
+            <h2>Comment puis-je vous aider ?</h2>
+
+            <p class="text-muted">
+                Choisissez un modèle IA et posez votre question.
+            </p>
+
+        </div>
+
+        <!-- Historique des messages -->
+        <div th:each="message : ${messages}"
+             class="mb-4">
+
+            <strong th:text="${message.typeMessage}">
+            </strong>
+
+            <div class="message mt-2 message-content"
+                 th:text="${message.contenu}">
+            </div>
+
+        </div>
+
+    </section>
+</main>
+</body>
+</html>

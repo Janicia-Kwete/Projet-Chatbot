@@ -21,6 +21,8 @@ class ModeleIA(
     @Column(nullable = true)
     var cheminLogo: String? = null,
 
+    var urlAPI :String,
+
 
 
 // Association avec FournisseurIA (ModeleIA est le maître de l'association)
@@ -32,6 +34,7 @@ var fournisseurIA: FournisseurIA? = null,
 @OneToMany(mappedBy = "modeleIA", cascade = [CascadeType.REMOVE], orphanRemoval = true)
 var conversations: MutableList<Conversation> = mutableListOf()
 ){
+
 
 }
 
