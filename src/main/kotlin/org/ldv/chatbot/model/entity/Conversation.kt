@@ -30,3 +30,5 @@ var messages: MutableList<Message> = mutableListOf(),
 
     lateinit var dateDerniereModification: LocalDateTime
 }
+
+

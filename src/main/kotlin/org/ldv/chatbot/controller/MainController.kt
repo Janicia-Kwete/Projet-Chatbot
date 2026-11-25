@@ -3,11 +3,26 @@ package org.ldv.chatbot.controller
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 
-@Controller
+/*@Controller
 class MainController {
 
     @GetMapping("/")
     fun home():String{
         return "index"
+    }
+
+ */
+
+
+
+
+@Controller
+class MainController {
+
+
+    @GetMapping("/login")
+    fun login(): String {
+        return "auth/login"
+
     }
 }

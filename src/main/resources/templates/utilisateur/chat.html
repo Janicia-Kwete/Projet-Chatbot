@@ -40,6 +40,96 @@
         </div>
 
     </section>
+
+    <!-- Zone de saisie -->
+    <div class="border-top p-3">
+
+        <!-- Création d'une conversation -->
+        <form id="formChat"
+              th:if="${conversation == null}"
+              th:action="@{/conversations}"
+              method="post">
+
+            <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-end gap-2">
+
+                <div class="model-select-wrapper">
+                    <!-- Choix du modèle IA -->
+                    <select name="idModele"
+                            class="form-select model-select"
+                            required>
+
+                        <option value="" disabled selected>
+                            Choisir un modèle IA
+                        </option>
+
+                        <option th:each="modele : ${modeles}"
+                                th:value="${modele.id}"
+                                th:text="${modele.nom}">
+                        </option>
+
+                    </select>
+                </div>
+                <div class="flex-grow-1">
+                    <!-- Prompt -->
+                    <textarea name="prompt"
+                              class="form-control"
+                              rows="2"
+                              placeholder="Posez votre question..."
+                              required></textarea>
+                </div>
+                <div class="send-button-wrapper">
+                    <!-- Envoi -->
+                    <button class="btn btn-primary"
+                            type="submit">
+                        Envoyer
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- Conversation existante -->
+        <form th:if="${conversation != null}"
+              th:action="@{/conversations/{id}/messages(id=${conversation.id})}"
+              method="post">
+
+            <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-end gap-2">
+
+                <!-- Modèle utilisé -->
+                <div class="model-current d-flex align-items-center gap-2">
+
+                    <img th:src="@{${conversation.modeleIA.cheminLogo}}"
+                         alt="Logo du modèle"
+                         width="28"
+                         height="28">
+
+                    <span th:text="${conversation.modeleIA.nom}">
+                </span>
+
+                </div>
+
+                <!-- Prompt -->
+                <div class="flex-grow-1">
+                <textarea name="prompt"
+                          class="form-control"
+                          rows="2"
+                          placeholder="Écrivez votre message..."
+                          required></textarea>
+                </div>
+                <div class="send-button-wrapper">
+                    <!-- Envoi -->
+                    <button class="btn btn-primary"
+                            type="submit">
+                        Envoyer
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </main>
 </body>
 </html>
