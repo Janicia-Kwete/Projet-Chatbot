@@ -28,7 +28,7 @@ class ModeleIA(
 // Association avec FournisseurIA (ModeleIA est le maître de l'association)
     @ManyToOne
 @JoinColumn(name = "fournisseur_ia_id")
-var fournisseurIA: FournisseurIA? = null,
+var fournisseurIA: FournisseurIA ,
 
 // Association avec Conversation
 @OneToMany(mappedBy = "modeleIA", cascade = [CascadeType.REMOVE], orphanRemoval = true)

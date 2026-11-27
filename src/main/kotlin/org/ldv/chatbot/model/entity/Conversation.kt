@@ -25,10 +25,18 @@ var modeleIA: ModeleIA? = null,
 // Association avec Message
 @OneToMany(mappedBy = "conversation", cascade = [CascadeType.REMOVE], orphanRemoval = true)
 var messages: MutableList<Message> = mutableListOf(),
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "utilisateur_id", nullable = false)
+    var utilisateur: Utilisateur,
+    var dateDerniereModification: LocalDateTime = LocalDateTime.now()
 )
 {
-
-    lateinit var dateDerniereModification: LocalDateTime
+@PostUpdate
+fun dateModification (){
+  this.dateDerniereModification= LocalDateTime.now()
 }
+
+}
+
 
 
